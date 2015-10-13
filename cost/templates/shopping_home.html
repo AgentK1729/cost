@@ -1,0 +1,65 @@
+<html>
+  <head><title>Login</title>
+    <link rel="stylesheet" href="{{ STATIC_URL }}style.css">
+    <script src = "{{ STATIC_URL }}jquery.js"></script>
+
+    <style>
+        input[type="text"], input[type="password"]
+        {
+            width : 30vw;
+            height : 6vh;
+            font-size : 3vh;
+        }
+
+        error
+        {
+            font-size : 5vh;
+            color : white;
+        }
+
+        logo
+        {
+            font-size : 20vh;
+            color : white;
+        }
+
+        tagline
+        {
+            font-size : 5vh;
+            color : white;
+        }
+
+        a {font-size: 24px;}
+    </style>
+
+  </head>
+  <body>
+
+      <script>
+            $(document).ready (function ()
+            {
+                $("logo").hide ();
+                $("tagline").hide ();
+                $("logo").delay(250).slideDown ();
+                $("tagline").delay(500).slideDown ();
+            });
+        </script>
+
+      <center>
+      <div class = "jumbotron">
+    <form action = "/shopping/home/" method = "post">
+      {{ form.as_p }}
+      {% csrf_token %}
+      <input type = "submit" value = "Login" name = "login" class="btn btn-primary btn-lg">
+    </form>
+    <a href = "/student/forgot-password">Forgot Password?</a><br>
+    <error>{{ error }}</error>
+    </div>
+
+        <logo>COST</logo><br>
+        <tagline><b>C</b>ollaborative <b>O</b>nline <b>S</b>hopping <b>T</b>ool</tagline><br>
+        <tagline>The social network of shopaholics</tagline>
+
+    </center>
+  </body>
+</html>

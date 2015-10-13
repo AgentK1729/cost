@@ -1,0 +1,124 @@
+<html>
+	<head><title>User Profile</title>
+
+        <link rel="stylesheet" href="http://crowdcoach.pythonanywhere.com/static/style.css">
+	    <style>
+
+            header1
+            {
+                font-size : 8vh;
+                color : white;
+            }
+
+            header2
+            {
+                font-size : 6vh;
+                color : white;
+            }
+
+            input[type="text"]
+            {
+                width : 200px;
+                height : 6vh;
+                font-size : 3vh;
+            }
+
+            img
+            {
+                height : 200px;
+                width : 200px;
+            }
+
+            a,text { font-size : 4vh; color : #FF9900;}
+
+
+            lesson {color : #FF6600;}
+
+	    </style>
+
+	</head>
+	<body>
+	    <div>
+            <div style="float:left">
+                <form action = "/shopping/picture" method = "post" enctype = "multipart/form-data">
+                    &nbsp;&nbsp;&nbsp;&nbsp;<img src = "{{ STATIC_URL }}{{ user }}.jpg" alt = "No image uploaded">
+                    <br><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type = "submit" class="btn btn-primary btn-lg" value = "Upload picture">
+                </form>
+            </div>
+            <div style="float:left;width:1000px;height:300px">
+                <header1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Welcome {{ user }}!</header1>
+            </div>
+            <div style="float:left;width:220px;height:300px">
+            	<a href = "/shopping/setlocation">Set Pickup Location</a>
+            </div>
+            <div style="float:left;width:100%">
+            	<header2>Pickup locations</header2><br>
+            	<ul>
+		        	{% for loc in locs %}	
+		        		<li><text>{{ loc.address }}</text></li>
+		        	{% endfor %}
+		       	</ul>
+            </div>
+        </div>
+        <div>
+            <div id = "list" style = "float:left;border:1px solid white;width:50%">
+                <center>
+                    <br>
+                    <form action = "/shopping/populate">
+                        <input type = "text" name = "item" placeholder = "Item">
+                        <select name = "store" class = "select-container form-control select select-primary" data-toggle="select" style = "width:200px" placeholder = "Select store">
+                            {% for store in stores %}
+                                <option value = "{{ store }}">{{ store }}</option>
+                            {% endfor %}
+                        </select>
+                        <input type = "submit" class="btn btn-primary btn-lg" value = "Add to list">
+                    </form>
+                </center>
+                <ul>
+                    {% for wish in wishlist %}
+                        <li>
+                            <form action = "/shopping/obtained" method = "get">
+                                <text>{{ wish.item }} ({{ wish.store }})</text>
+                                <input type = "hidden" name = "item" value = "{{ wish.item }}">
+                                <input type = "hidden" name = "store" value = "{{ wish.store }}">
+                                <input type = "submit" value = "Done" style = "font-size:20px">
+                            </form>
+                        </li>
+                    {% endfor %}
+                    {% for wish in mywishlist %}
+                        <li>
+                            <form action = "/shopping/obtained" method = "get">
+                                <text>{{ wish.item }} ({{ wish.store }})</text>
+                                <input type = "hidden" name = "item" value = "{{ wish.item }}">
+                                <input type = "hidden" name = "store" value = "{{ wish.store }}">
+                                <input type = "submit" value = "Done" style = "font-size:20px">
+                            </form>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div id = "other" style = "float:left;border:1px solid white;width:50%">
+                <header2>&nbsp;&nbsp;&nbsp;&nbsp;What other users need:</header2>
+                <ul>
+                    {% for wish in userwishlist %}
+                        <li>
+                            <form action = "/shopping/getthat" method = "get">
+                                <text>{{ wish.item }} ({{ wish.store }})
+                                    {% ifnotequal wish.user user %}
+                                        ({{ wish.user }})
+                                    {% endifnotequal %}
+                                </text>
+                                <input type = "hidden" name = "receiver" value = "{{ wish.user }}">
+                                <input type = "hidden" name = "item" value = "{{ wish.item }}">
+                                <input type = "hidden" name = "store" value = "{{ wish.store }}">
+                                <input type = "submit" value = "I'll get that!" style = "font-size:20px">
+                            </form>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+	</body>
+</html>
