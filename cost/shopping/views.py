@@ -12,6 +12,9 @@ class Wish(object):
         self.item = item
         self.store = store
 
+def nothing(request):
+	return HttpResponseRedirect("/shopping/home/")
+
 def home(request):
     if request.method == "GET":
         form = LoginForm()

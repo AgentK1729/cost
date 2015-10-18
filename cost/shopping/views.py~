@@ -45,7 +45,7 @@ def profile(request):
     			userwishlist.append(Wish(i.user, i.item, i.store) for i in Item.objects.filter(user=user))
     			break
     	
-#    userwishlist = [Wish(i.user, i.item, i.store) for i in Item.objects.all().exclude(user=u)]
+    userwishlist = [Wish(i.user, i.item, i.store) for i in Item.objects.all().exclude(user=u)]
     mywishlist = [Wish(i.receiver, i.item, i.store) for i in UserItem.objects.filter(buyer=u)]
     try:
     	locs = PickupLocation.objects.filter(user=u)
