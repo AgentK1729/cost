@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib import admin
-from django_google_maps import fields as map_fields
 
 class Item(models.Model):
     user = models.ForeignKey(User)
