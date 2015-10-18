@@ -40,7 +40,7 @@
     <form action = "/shopping/setlocation/" method = "post">
       <input type = "text" name = "address" placeholder = "Enter Address">
       {% csrf_token %}
-      <input type = "submit" value = "Login" name = "login" class="btn btn-primary btn-lg">
+      <input type = "submit" value = "Set" name = "login" class="btn btn-primary btn-lg">
     </form>
     </div>
 
