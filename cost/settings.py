@@ -125,7 +125,6 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     # 'collegevent.post',
     'cost.shopping',
-    'django_google_maps',
 )
 
 # A sample logging configuration. The only tangible logging
