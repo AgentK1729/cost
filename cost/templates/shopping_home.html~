@@ -1,7 +1,7 @@
 <html>
   <head><title>Login</title>
-    <link rel="stylesheet" href="http://crowdcoach.pythonanywhere.com/static/style.css">
-    <script src = "http://crowdcoach.pythonanywhere.com/static/jquety.js"></script>
+    <link rel="stylesheet" href="{{ STATIC_URL }}style.css">
+    <script src = "{{ STATIC_URL }}jquery.js"></script>
 
     <style>
         input[type="text"], input[type="password"]
