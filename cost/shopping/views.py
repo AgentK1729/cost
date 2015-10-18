@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.conf import settings
 from geolocation.google_maps import GoogleMaps
 from models import *
+from django.conf import settings
 
 class Wish(object):
     def __init__(self, user, item, store):
@@ -25,7 +26,7 @@ def home(request):
             request.session['user'] = request.POST['username']
             return HttpResponseRedirect("/shopping/profile")
         else:
-            return render(request, "shopping_home.html", {'error':'Either the username or the password is incorrect', 'form':LoginForm()})
+            return render(request, "shopping_home.html", {'error':'Either the username or the password is incorrect', 'form':LoginForm(), 'STATIC_URL':settings.STATIC_URL})
 
 
 def profile(request):

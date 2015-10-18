@@ -5,12 +5,16 @@ from django.contrib.auth.models import User
 from django.conf import settings
 from geolocation.google_maps import GoogleMaps
 from models import *
+from django.conf import settings
 
 class Wish(object):
     def __init__(self, user, item, store):
         self.user = user
         self.item = item
         self.store = store
+
+def nothing(request):
+	return HttpResponseRedirect("/shopping/home/")
 
 def home(request):
     if request.method == "GET":
