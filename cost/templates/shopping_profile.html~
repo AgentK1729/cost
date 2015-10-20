@@ -40,17 +40,17 @@
 	<body>
 	    <div>
             <div style="float:left">
-                <form action = "/shopping/picture" method = "post" enctype = "multipart/form-data">
-                    &nbsp;&nbsp;&nbsp;&nbsp;<img src = "{{ STATIC_URL }}{{ user }}.jpg" alt = "No image uploaded">
+                <form action = "/shopping/picture/" method = "post" enctype = "multipart/form-data">
+                    <img src = "{{ STATIC_URL }}{{ user }}.jpg" alt = "No image uploaded">
                     <br><br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type = "file" name = "pic">
                     <input type = "submit" class="btn btn-primary btn-lg" value = "Upload picture">
                 </form>
             </div>
-            <div style="float:left;width:1000px;height:300px">
-                <header1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Welcome {{ user }}!</header1>
+            <div style="float:left;height:300px">
+                <header1>Welcome {{ user }}!</header1>
             </div>
-            <div style="float:left;width:220px;height:300px">
+            <div style="float:left;width:220px">
             	<a href = "/shopping/setlocation">Set Pickup Location</a>
             </div>
             <div style="float:left;width:100%">
