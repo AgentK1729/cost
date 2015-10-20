@@ -92,7 +92,7 @@ def setLocation(request):
 
 
 def picture(request):
-	pic = open(os.path.join(BASE_DIR, 'cost/static/%s.jpg'%request.session['user'], 'w')
+	pic = open(os.path.join(BASE_DIR, 'cost/static/%s.jpg'%request.session['user']), 'w')
 	for i in request.FILES['pic']:	
 		pic.write(i)
 	return HttpResponseRedirect("/shopping/profile")
