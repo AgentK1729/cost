@@ -14,5 +14,7 @@ urlpatterns = patterns('shopping.views',
     url(r'^getthat/', views.getThat),
     
     url(r'^setlocation/', views.setLocation),
+    
+    url(r'^picture/', views.picture),
 
 )

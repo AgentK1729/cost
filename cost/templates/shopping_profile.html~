@@ -83,7 +83,7 @@
                                 <text>{{ wish.item }} ({{ wish.store }})</text>
                                 <input type = "hidden" name = "item" value = "{{ wish.item }}">
                                 <input type = "hidden" name = "store" value = "{{ wish.store }}">
-                                <input type = "submit" value = "Done" style = "font-size:20px">
+                                <input type = "submit" value = "Bought" style = "font-size:20px">
                             </form>
                         </li>
                     {% endfor %}
@@ -93,7 +93,7 @@
                                 <text>{{ wish.item }} ({{ wish.store }})</text>
                                 <input type = "hidden" name = "item" value = "{{ wish.item }}">
                                 <input type = "hidden" name = "store" value = "{{ wish.store }}">
-                                <input type = "submit" value = "Done" style = "font-size:20px">
+                                <input type = "submit" value = "Bought" style = "font-size:20px">
                             </form>
                         </li>
                     {% endfor %}
