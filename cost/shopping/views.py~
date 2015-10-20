@@ -6,6 +6,7 @@ from django.conf import settings
 from geolocation.google_maps import GoogleMaps
 from models import *
 from django.conf import settings
+import os
 
 class Wish(object):
     def __init__(self, user, item, store):
