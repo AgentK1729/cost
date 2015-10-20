@@ -44,14 +44,19 @@
                     <img src = "{{ STATIC_URL }}{{ user }}.jpg" alt = "No image uploaded">
                     <br><br>
                     <input type = "file" name = "pic">
+                    {% csrf_token %}
                     <input type = "submit" class="btn btn-primary btn-lg" value = "Upload picture">
                 </form>
             </div>
             <div style="float:left;height:300px">
                 <header1>Welcome {{ user }}!</header1>
             </div>
-            <div style="float:left;width:220px">
+            <br>
+            <div style="float:left;width:300px">
             	<a href = "/shopping/setlocation">Set Pickup Location</a>
+            </div>
+            <div style="float:left;width:300px">
+            	<a href = "/shopping/logout">Log Out</a>
             </div>
             <div style="float:left;width:100%">
             	<header2>Pickup locations</header2><br>

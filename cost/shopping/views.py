@@ -96,3 +96,10 @@ def picture(request):
 	for i in request.FILES['pic']:	
 		pic.write(i)
 	return HttpResponseRedirect("/shopping/profile")
+	
+def logout(request):
+	try:
+		del request.session['user']
+	except:
+		pass
+	return HttpResponseRedirect("/shopping/home/")
