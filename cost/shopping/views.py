@@ -30,7 +30,7 @@ def signup(request):
 		except User.DoesNotExist:
 			if request.POST['password'] == request.POST['confirm']:
 							User(username=request.POST['username'], password=request.POST['password'], email=request.POST['email']).save()
-							EmailMessage('Welcome to COST', 'Hey! Congratulations on joining COST! We hope to make your shopping experience more efficient. Welcome to the family!', to=[request.POST['email']]).send()
+							EmailMessage('Welcome to COST', 'Hey %s! Congratulations on joining COST! We hope to make your shopping experience more efficient. Welcome to the family!'%request.POST['username'], to=[request.POST['email']]).send()
 							error = "Successfully signed up. Please log in to continue"
 							return render(request, "shopping_signup.html", {'error':error})
 
