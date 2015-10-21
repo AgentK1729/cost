@@ -18,5 +18,7 @@ urlpatterns = patterns('shopping.views',
     url(r'^picture/', views.picture),
     
     url(r'^logout/', views.logout),
+    
+    url(r'^signup/', views.signup),
 
 )

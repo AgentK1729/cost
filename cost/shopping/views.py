@@ -7,6 +7,7 @@ from geolocation.google_maps import GoogleMaps
 from models import *
 from django.conf import settings
 import os
+from django.core.mail import EmailMessage
 
 class Wish(object):
     def __init__(self, user, item, store):
@@ -16,6 +17,22 @@ class Wish(object):
 
 def nothing(request):
 	return HttpResponseRedirect("/shopping/home/")
+
+def signup(request):
+	if request.method == "GET":
+		form = SignupForm()
+		return render(request, "shopping_signup.html", {'form':form})
+	else:
+		try:
+			u = User.objects.get(username=request.POST['username'])
+			error = "User already exists. Please log in to continue"
+			return render(request, "shopping_signup.html", {'error':error})
+		except User.DoesNotExist:
+			if request.POST['password'] == request.POST['confirm']:
+							User(username=request.POST['username'], password=request.POST['password'], email=request.POST['email']).save()
+							EmailMessage('Welcome to COST', 'Hey! Congratulations on joining COST! We hope to make your shopping experience more efficient. Welcome to the family!', to=[request.POST['email']]).send()
+							error = "Successfully signed up. Please log in to continue"
+							return render(request, "shopping_signup.html", {'error':error})
 
 def home(request):
     if request.method == "GET":

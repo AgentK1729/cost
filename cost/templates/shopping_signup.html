@@ -1,5 +1,5 @@
 <html>
-  <head><title>Login</title>
+  <head><title>Register</title>
     <link rel="stylesheet" href="http://crowdcoach.pythonanywhere.com/static/style.css">
     <script src = "http://crowdcoach.pythonanywhere.com/static/jquety.js"></script>
 
@@ -47,12 +47,12 @@
 
       <center>
       <div class = "jumbotron">
-    <form action = "/shopping/home/" method = "post">
+    <form action = "/shopping/signup/" method = "post">
       {{ form.as_p }}
       {% csrf_token %}
-      <input type = "submit" value = "Login" name = "login" class="btn btn-primary btn-lg">
+      <input type = "submit" value = "Register" class="btn btn-primary btn-lg">
     </form>
-    <a href = "/shopping/signup">Register</a><br>
+    <a href = "/shopping/home">Log In</a><br>
     <error>{{ error }}</error>
     </div>
 

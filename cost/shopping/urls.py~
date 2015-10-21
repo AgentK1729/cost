@@ -16,5 +16,7 @@ urlpatterns = patterns('shopping.views',
     url(r'^setlocation/', views.setLocation),
     
     url(r'^picture/', views.picture),
+    
+    url(r'^logout/', views.logout),
 
 )

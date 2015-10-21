@@ -1,7 +1,7 @@
 <html>
   <head><title>Login</title>
-    <link rel="stylesheet" href="{{ STATIC_URL }}style.css">
-    <script src = "{{ STATIC_URL }}jquery.js"></script>
+    <link rel="stylesheet" href="http://crowdcoach.pythonanywhere.com/static/style.css">
+    <script src = "http://crowdcoach.pythonanywhere.com/static/jquety.js"></script>
 
     <style>
         input[type="text"], input[type="password"]
@@ -52,7 +52,7 @@
       {% csrf_token %}
       <input type = "submit" value = "Login" name = "login" class="btn btn-primary btn-lg">
     </form>
-    <a href = "/student/forgot-password">Forgot Password?</a><br>
+    <a href = "/student/signup">Register</a><br>
     <error>{{ error }}</error>
     </div>
 
