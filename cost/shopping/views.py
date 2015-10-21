@@ -92,7 +92,10 @@ def obtained(request):
 
 def getThat(request):
     u = User.objects.get(username=request.session['user'])
+    r = User.objects.get(username=request.GET['receiver'])
     UserItem(buyer=u, receiver=request.GET['receiver'], item=request.GET['item'], store=request.GET['store']).save()
+    EmailMessage('Item added to shopping list', 'Hey! You have promised to buy %s for %s from %s. Once you do, please contact %s on %s'%(request.GET['item'],r.username,request.GET['store'],r.username,r.email), to=[u.email]).send()
+    EmailMessage('Request for %s'%request.GET['item'], 'Hey! %s has promised to get %s for you from %s. S/he will contact you once they get it. Meanwhile, you can get in touch with %s on %s.'%(u.username,request.GET['item'],request.GET['store'],u.username,u.email), to=[r.email]).send()
     return HttpResponseRedirect("/shopping/profile")
 	
 	
