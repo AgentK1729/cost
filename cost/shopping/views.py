@@ -50,7 +50,7 @@ def home(request):
 def profile(request):
     u = User.objects.get(username=request.session['user'])
     wishlist = [Wish(u.username, i.item, i.store) for i in Item.objects.filter(user=u)]
-    stores = ['Walmart', 'JCPenney']
+    stores = [store for store in open(os.path.join(settings.BASE_DIR, "cost/shopping/stores.txt"),"r")]
     users = User.objects.all().exclude(username=request.session['user'])
     addsend = [a.address for a in PickupLocation.objects.filter(user=u)]
     google_maps = GoogleMaps(api_key='AIzaSyC8hihi26xJqO77v4R2qJMii0cn6S2eW8w')
