@@ -52,10 +52,10 @@
                 <header1>Welcome {{ user }}!</header1>
             </div>
             <br>
-            <div style="float:left;width:300px">
+            <div style="float:left;width:50%">
             	<a href = "/shopping/setlocation">Set Pickup Location</a>
             </div>
-            <div style="float:left;width:300px">
+            <div style="float:left;width:50%">
             	<a href = "/shopping/logout">Log Out</a>
             </div>
             <div style="float:left;width:100%">
