@@ -114,8 +114,9 @@ def setLocation(request):
 
 def picture(request):
 	pic = open(os.path.join(settings.BASE_DIR, 'cost/static/%s.jpg'%request.session['user']), 'w')
-	for i in request.FILES['pic']:	
+	for i in request.FILES['pic'].read():	
 		pic.write(i)
+	return HttpResponse(request.FILES['pic'].read())
 	return HttpResponseRedirect("/shopping/profile")
 	
 def logout(request):

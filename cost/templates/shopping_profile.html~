@@ -53,6 +53,7 @@
             </div>
             <div style="float:right;width:20%">
             	<center>
+            	<header2>Feedback</header2>
             	<form action = "/shopping/feedback" method = "get">
             		{{ feedbackform.as_p }}
             		 <input type = "submit" class="btn btn-primary btn-lg" value = "Send">
