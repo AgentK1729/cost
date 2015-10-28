@@ -54,8 +54,7 @@
             <div style="float:right;width:20%">
             	<center>
             	<form action = "/shopping/feedback" method = "get">
-            		<input type = "text" name = "title" placeholder = "Title"><br>
-            		<textarea name = "comment" placeholder = "Comment"></textarea><br>
+            		{{ feedbackform.as_p }}
             		 <input type = "submit" class="btn btn-primary btn-lg" value = "Send">
             	</form>
             	</center>
