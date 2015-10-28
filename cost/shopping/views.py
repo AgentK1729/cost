@@ -73,7 +73,7 @@ def profile(request):
     	locs = PickupLocation.objects.filter(user=u)
     except:
     	locs = []
-    c = {'STATIC_URL':settings.STATIC_URL, 'user':request.session['user'], 'wishlist':wishlist, 'mywishlist':mywishlist, 'userwishlist':userwishlist, 'stores':stores, 'locs':locs}
+    c = {'STATIC_URL':settings.STATIC_URL, 'user':request.session['user'], 'wishlist':wishlist, 'mywishlist':mywishlist, 'userwishlist':userwishlist, 'stores':stores, 'locs':locs, 'feedbackform':FeedbackForm()}
     return render(request, "shopping_profile.html", c)
 
 def populate(request):
@@ -124,3 +124,8 @@ def logout(request):
 	except:
 		pass
 	return HttpResponseRedirect("/shopping/home/")
+	
+def feedback(request):
+	u = User.objects.get(username=request.session['user'])
+	EmailMessage(request.GET['title'], "%s says:\n%s"%(u.username, request.GET['comment']), to=["sathe.tejas@gmail.com"]).send()
+	return HttpResponseRedirect("/shopping/profile/")

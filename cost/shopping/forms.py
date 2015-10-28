@@ -15,3 +15,7 @@ class SignupForm (forms.Form):
 		'placeholder':'Password', 'class':'form-control login-field'}))
 	confirm = forms.CharField (label = "", widget=forms.PasswordInput(attrs={'width':'30vw', 'height':'6vh', 'font-size':'3vh',
 		'placeholder':'Confirm Password', 'class':'form-control login-field'}))
+		
+class FeedbackForm (forms.Form):
+	title = forms.CharField (label = "", widget=forms.TextInput(attrs={'width':'30vw', 'height':'6vh', 'font-size':'3vh', 'placeholder':'Title', 'class':'form-control login-field'}))
+	comment = forms.CharField (label = "", widget=forms.Textarea(attrs={'width':'30vw', 'height':'6vh', 'font-size':'3vh', 'placeholder':'Comment', 'class':'form-control login-field'}))	

@@ -20,5 +20,7 @@ urlpatterns = patterns('shopping.views',
     url(r'^logout/', views.logout),
     
     url(r'^signup/', views.signup),
+    
+    url(r'^feedback/', views.feedback),
 
 )

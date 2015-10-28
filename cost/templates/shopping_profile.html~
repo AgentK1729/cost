@@ -51,6 +51,15 @@
             <div style="float:left;height:300px">
                 <header1>Welcome {{ user }}!</header1>
             </div>
+            <div style="float:right;width:20%">
+            	<center>
+            	<form action = "/shopping/feedback" method = "get">
+            		<input type = "text" name = "title" placeholder = "Title"><br>
+            		<textarea name = "comment" placeholder = "Comment"></textarea><br>
+            		 <input type = "submit" class="btn btn-primary btn-lg" value = "Send">
+            	</form>
+            	</center>
+            </div>
             <br>
             <div style="float:left;width:50%">
             	<a href = "/shopping/setlocation">Set Pickup Location</a>
@@ -69,6 +78,7 @@
         </div>
         <div>
             <div id = "list" style = "float:left;border:1px solid white;width:50%">
+            	<header2>&nbsp;&nbsp;&nbsp;&nbsp;Tell us what you need:</header2>
                 <center>
                     <br>
                     <form action = "/shopping/populate">
