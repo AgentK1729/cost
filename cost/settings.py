@@ -6,15 +6,15 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    ('Tejas Sathe', 'sathe.tejas@gmail.com'),
 )
 
 MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'd94ds5o0r18q1l',   # Or path to database file if using sqlite3.
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd94ds5o0r18q1l',
         'HOST': 'ec2-54-83-29-15.compute-1.amazonaws.com',
         'USER': 'mofdwnxkhxlyxv',
         'PASSWORD': 'f2A7cCsMSuzbm05FJ00qRCvH0k',
