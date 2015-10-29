@@ -110,6 +110,12 @@
                                 <input type = "hidden" name = "store" value = "{{ wish.store }}">
                                 <input type = "submit" value = "Bought" style = "font-size:20px">
                             </form>
+                            <form action = "/shopping/cantgetthat" method = "get">
+                            	<input type = "hidden" name = "receiver" value = "{{ wish.user }}">
+                                <input type = "hidden" name = "item" value = "{{ wish.item }}">
+                                <input type = "hidden" name = "store" value = "{{ wish.store }}">
+                                <input type = "submit" value = "Can't get it" style = "font-size:20px">
+                            </form>
                         </li>
                     {% endfor %}
                 </ul>

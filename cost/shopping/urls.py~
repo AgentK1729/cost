@@ -21,6 +21,6 @@ urlpatterns = patterns('shopping.views',
     
     url(r'^signup/', views.signup),
     
-    #url(r'^feedback/', views.feedback),
+    url(r'^feedback/', views.feedback),
 
 )

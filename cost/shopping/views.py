@@ -94,10 +94,23 @@ def getThat(request):
     u = User.objects.get(username=request.session['user'])
     r = User.objects.get(username=request.GET['receiver'])
     UserItem(buyer=u, receiver=request.GET['receiver'], item=request.GET['item'], store=request.GET['store']).save()
+    items = Item.objects.filter(user=r, item=request.GET['item'], store=request.GET['store'])
+    for i in items:
+    	i.delete()
     EmailMessage('Item added to shopping list', 'Hey! You have promised to buy %s for %s from %s. Once you do, please contact %s on %s'%(request.GET['item'],r.username,request.GET['store'],r.username,r.email), to=[u.email]).send()
     EmailMessage('Request for %s'%request.GET['item'], 'Hey! %s has promised to get %s for you from %s. S/he will contact you once they get it. Meanwhile, you can get in touch with %s on %s.'%(u.username,request.GET['item'],request.GET['store'],u.username,u.email), to=[r.email]).send()
     return HttpResponseRedirect("/shopping/profile")
 	
+def cantGetThat(request):
+	r = User.objects.get(username=request.GET['receiver'])
+	u = User.objects.get(username=request.session['user'])
+	items = UserItem.objects.filter(item=request.GET['item'],store=request.GET['store'],receiver=r,buyer=u)
+	for i in items:
+		i.delete()
+	Item(user=r,item=request.GET['item'],store=request.GET['store']).save()
+	EmailMessage("Added %s back to your shopping list"%request.GET['item'], "Hey! Turns out %s can't get %s for you from %s, so we've added it back to your shopping list."%(u.username,request.GET['item'],request.GET['store']), to=[r.email]).send()
+	return HttpResponseRedirect("/shopping/profile")
+
 	
 # AIzaSyC8hihi26xJqO77v4R2qJMii0cn6S2eW8w
 def setLocation(request):
