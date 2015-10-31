@@ -88,6 +88,16 @@
                                 <option value = "{{ store }}">{{ store }}</option>
                             {% endfor %}
                         </select>
+                        <input type = "number" name = "count" min = "1" max = "100">
+                        <select name = "metric" class = "select-container form-control select select-primary" data-toggle="select" style = "width:100px" placeholder = "Select store">
+                        	<option value = "item(s)">item(s)</option>
+                        	<option value = "kg">kg</option>
+                        	<option value = "gram(s)">gram(s)</option>
+                        	<option value = "litre(s)">litre(s)</option>
+                        	<option value = "pound(s)">pound(s)</option>
+                        	<option value = "gallon(s)">gallon(s)</option>
+                        	<option value = "packet(s)">packet(s)</option>
+                        </select>
                         <input type = "submit" class="btn btn-primary btn-lg" value = "Add to list">
                     </form>
                 </center>
@@ -95,8 +105,10 @@
                     {% for wish in wishlist %}
                         <li>
                             <form action = "/shopping/obtained" method = "get">
-                                <text>{{ wish.item }} ({{ wish.store }})</text>
+                                <text>{{ wish.item }} x{{ wish.count }} {{wish.metric }} ({{ wish.store }})</text>
                                 <input type = "hidden" name = "item" value = "{{ wish.item }}">
+                                <input type = "hidden" name = "count" value = "{{ wish.count }}">
+                                <input type = "hidden" name = "metric" value = "{{ wish.metric }}">
                                 <input type = "hidden" name = "store" value = "{{ wish.store }}">
                                 <input type = "submit" value = "Bought" style = "font-size:20px">
                             </form>
@@ -105,14 +117,18 @@
                     {% for wish in mywishlist %}
                         <li>
                             <form action = "/shopping/obtained" method = "get">
-                                <text>{{ wish.item }} ({{ wish.store }})</text>
+                                <text>{{ wish.item }} x{{ wish.count }} {{wish.metric }} ({{ wish.store }})</text>
                                 <input type = "hidden" name = "item" value = "{{ wish.item }}">
+                                <input type = "hidden" name = "count" value = "{{ wish.count }}">
+                                <input type = "hidden" name = "metric" value = "{{ wish.metric }}">
                                 <input type = "hidden" name = "store" value = "{{ wish.store }}">
                                 <input type = "submit" value = "Bought" style = "font-size:20px">
                             </form>
                             <form action = "/shopping/cantgetthat" method = "get">
                             	<input type = "hidden" name = "receiver" value = "{{ wish.user }}">
                                 <input type = "hidden" name = "item" value = "{{ wish.item }}">
+                                <input type = "hidden" name = "count" value = "{{ wish.count }}">
+                                <input type = "hidden" name = "metric" value = "{{ wish.metric }}">
                                 <input type = "hidden" name = "store" value = "{{ wish.store }}">
                                 <input type = "submit" value = "Can't get it" style = "font-size:20px">
                             </form>
@@ -126,13 +142,15 @@
                     {% for wish in userwishlist %}
                         <li>
                             <form action = "/shopping/getthat" method = "get">
-                                <text>{{ wish.item }} ({{ wish.store }})
+                                <text>{{ wish.item }} x{{ wish.count }} {{ wish.metric }}({{ wish.store }})
                                     {% ifnotequal wish.user user %}
                                         ({{ wish.user }})
                                     {% endifnotequal %}
                                 </text>
                                 <input type = "hidden" name = "receiver" value = "{{ wish.user }}">
                                 <input type = "hidden" name = "item" value = "{{ wish.item }}">
+                                <input type = "hidden" name = "count" value = "{{ wish.count }}">
+                                <input type = "hidden" name = "metric" value = "{{ wish.metric }}">
                                 <input type = "hidden" name = "store" value = "{{ wish.store }}">
                                 <input type = "submit" value = "I'll get that!" style = "font-size:20px">
                             </form>

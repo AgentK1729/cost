@@ -10,10 +10,12 @@ import os
 from django.core.mail import EmailMessage
 
 class Wish(object):
-    def __init__(self, user, item, store):
+    def __init__(self, user, item, store, count, metric):
         self.user = user
         self.item = item
         self.store = store
+        self.count = count
+        self.metric = metric
 
 def nothing(request):
 	return HttpResponseRedirect("/shopping/home/")
@@ -67,8 +69,8 @@ def profile(request):
     			userwishlist.append(Wish(i.user, i.item, i.store) for i in Item.objects.filter(user=user))
     			break
     	
-    userwishlist = [Wish(i.user, i.item, i.store) for i in Item.objects.all().exclude(user=u)]
-    mywishlist = [Wish(i.receiver, i.item, i.store) for i in UserItem.objects.filter(buyer=u)]
+    userwishlist = [Wish(i.user, i.item, i.store, i.count, i.metric) for i in Item.objects.all().exclude(user=u)]
+    mywishlist = [Wish(i.receiver, i.item, i.store, i.count, i.metric) for i in UserItem.objects.filter(buyer=u)]
     try:
     	locs = PickupLocation.objects.filter(user=u)
     except:
@@ -78,7 +80,7 @@ def profile(request):
 
 def populate(request):
     u = User.objects.get(username=request.session['user'])
-    i = Item.objects.create(user=u, item=request.GET['item'], store=request.GET['store'])
+    i = Item.objects.create(user=u, item=request.GET['item'], store=request.GET['store'], count=int(request.GET['count']), metric=request.GET['metric'])
     i.save()
     return HttpResponseRedirect("/shopping/profile")
 
@@ -93,7 +95,7 @@ def obtained(request):
 def getThat(request):
     u = User.objects.get(username=request.session['user'])
     r = User.objects.get(username=request.GET['receiver'])
-    UserItem(buyer=u, receiver=request.GET['receiver'], item=request.GET['item'], store=request.GET['store']).save()
+    UserItem(buyer=u, receiver=request.GET['receiver'], item=request.GET['item'], store=request.GET['store'], count=int(request.GET['count']), metric=request.GET['metric']).save()
     items = Item.objects.filter(user=r, item=request.GET['item'], store=request.GET['store'])
     for i in items:
     	i.delete()
@@ -102,12 +104,12 @@ def getThat(request):
     return HttpResponseRedirect("/shopping/profile")
 	
 def cantGetThat(request):
-	r = User.objects.get(username=request.GET['user'])
+	r = User.objects.get(username=request.GET['receiver'])
 	u = User.objects.get(username=request.session['user'])
 	items = UserItem.objects.filter(item=request.GET['item'],store=request.GET['store'],receiver=r,buyer=u)
 	for i in items:
 		i.delete()
-	Item(user=r,item=request.GET['item'],store=request.GET['store']).save()
+	Item(user=r,item=request.GET['item'],store=request.GET['store'],count=request.GET['count'],metric=request.GET['metric']).save()
 	EmailMessage("Added %s back to your shopping list"%request.GET['item'], "Hey! Turns out %s can't get %s for you from %s, so we've added it back to your shopping list."%(u.username,request.GET['item'],request.GET['store']), to=[r.email]).send()
 	return HttpResponseRedirect("/shopping/profile")
 
