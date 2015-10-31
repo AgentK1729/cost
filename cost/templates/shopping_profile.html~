@@ -88,7 +88,7 @@
                                 <option value = "{{ store }}">{{ store }}</option>
                             {% endfor %}
                         </select>
-                        <input type = "number" name = "count" min = "1" max = "100">
+                        <input type = "number" name = "count" min = "1" max = "1000">
                         <select name = "metric" class = "select-container form-control select select-primary" data-toggle="select" style = "width:100px" placeholder = "Select store">
                         	<option value = "item(s)">item(s)</option>
                         	<option value = "kg">kg</option>
@@ -125,6 +125,7 @@
                                 <input type = "submit" value = "Bought" style = "font-size:20px">
                             </form>
                             <form action = "/shopping/cantgetthat" method = "get">
+                            	<input type = "hidden" name = "receiver" value = "{{ wish.user }}">
                                 <input type = "hidden" name = "item" value = "{{ wish.item }}">
                                 <input type = "hidden" name = "count" value = "{{ wish.count }}">
                                 <input type = "hidden" name = "metric" value = "{{ wish.metric }}">
