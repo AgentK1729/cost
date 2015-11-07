@@ -52,7 +52,7 @@
       {% csrf_token %}
       <input type = "submit" value = "Login" name = "login" class="btn btn-primary btn-lg">
     </form>
-    <a href = "/student/signup">Register</a><br>
+    <a href = "/shopping/signup">Register</a><br>
     <error>{{ error }}</error>
     </div>
 
